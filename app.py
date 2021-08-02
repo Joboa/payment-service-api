@@ -1,10 +1,13 @@
+from dotenv import load_dotenv
 from flask import Flask, json, request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 from sqlalchemy import func
 from datetime import datetime
+load_dotenv()
 import requests
 import os
+
 
 """
 App configurations
@@ -35,7 +38,7 @@ class Payment(db.Model):
     email = db.Column(db.String(100), unique=True)
     mobile_number = db.Column(db.Integer)
     amount = db.Column(db.Float)
-    payment_date = db.Column(db.DateTime, nullable=False)  # Example 11/
+    payment_date = db.Column(db.DateTime, nullable=False)  
 
     def __init__(self, email, mobile_number, amount):
         self.email = email
@@ -76,7 +79,9 @@ def make_payment():
     email = request.json['email']
     mobile_number = request.json['mobile_number']
     amount = request.json['amount']
-    access_token = "sk_test_0b1400c14af0802885d23b0b198b2b0c015f74de"
+    # access_token = "sk_test_0b1400c14af0802885d23b0b198b2b0c015f74de"
+    # access_token = "pk_test_301d627d0b7fe6647f8874f4e4baadb8f1735313"
+    access_token = os.environ.get('ACCESS_TOKEN')
     my_headers = {'Authorization' : f'Bearer {access_token}', 'Content-Type': 'application/json'}
 
     payment_data = {
