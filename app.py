@@ -117,16 +117,9 @@ def get_transaction(id):
 # Get payment balance
 @app.route('/transactions/balance/', methods=['GET'])
 def get_balance():
-
-    all_transactions = Payment.query.all()
-    results = payment_schema.dump(all_transactions)
-
-    tot_balance = 0
-    for amt in range(len(results)):
-        tot_balance += results[amt]['amount']
-
-    return jsonify({'balance': tot_balance})
-
+    cursor = db.session.query(func.sum(Payment.amount))
+    total_balance = cursor.scalar()
+    return jsonify({'Transaction balance': total_balance})
 
 """
 Server to run the app
