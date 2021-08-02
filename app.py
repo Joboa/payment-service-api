@@ -30,7 +30,7 @@ Database models
 """
 # Payment Model
 class Payment(db.Model):
-    # Say payment with a credit card
+    # Payment with mobile money (MTN)
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(100), unique=True)
     mobile_number = db.Column(db.Integer)
@@ -79,8 +79,6 @@ def make_payment():
     access_token = "sk_test_0b1400c14af0802885d23b0b198b2b0c015f74de"
     my_headers = {'Authorization' : f'Bearer {access_token}', 'Content-Type': 'application/json'}
 
-    # return my_headers
-
     payment_data = {
         "amount": amount * 100,  # amount calculated in pesewas
         "email": email,
@@ -99,7 +97,8 @@ def make_payment():
     db.session.add(new_transaction)
     db.session.commit()
 
-    return "Payment sucessful, you'll received an invoice in your email!"
+    return "Payment sucessful, you will receive an invoice in your email!"
+
 
 # Get all transactions
 @app.route('/transactions', methods=['GET'])
@@ -108,11 +107,13 @@ def get_transactions():
     result = payment_schema.dump(all_transactions)
     return jsonify(result)
 
+
 # Get single payment (Not part of the task)
 @app.route('/transactions/<id>', methods=['GET'])
 def get_transaction(id):
     transaction = Payment.query.get(id)
     return payment_schema.jsonify(transaction)
+
 
 # Get payment balance
 @app.route('/transactions/balance/', methods=['GET'])
