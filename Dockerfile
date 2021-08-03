@@ -1,4 +1,16 @@
+# Pull base image
 FROM python:3.9
-ADD . /python-flask
+
+# Set envirionment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
+
+# Set work directory
 WORKDIR /python-flask
-RUN pip install -r requirements.txt
+
+# Install dependencies
+COPY Pipfile Pipfile.lock /python-flask/
+RUN pip install pipenv && pipenv install --system
+
+# Copy project
+COPY . /python-flask/
