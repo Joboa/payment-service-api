@@ -131,4 +131,5 @@ Server to run the app
 """
 # Server
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = os.environ.get('PORT', 5000)
+    app.run(port=port, host="0.0.0.0", debug=True)
