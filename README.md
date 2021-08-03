@@ -21,7 +21,7 @@ The project consist of 6 sections in `app.py`:
 **Paystack Gateway API** payment platform was used.
 Specifically with a test with MTN number `0551234987`.
 This is the testing mobile number.
-This the [LINK TO PAYSTACK API PAYMENT DOCS](https://paystack.com/docs/payments/accept-payments/#charge-api) for further reading.
+This is the [LINK TO PAYSTACK API PAYMENT DOCS](https://paystack.com/docs/payments/accept-payments/#charge-api) for further reading.
 
 # Test Endpoints
 To test the API endpoints:
