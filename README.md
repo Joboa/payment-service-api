@@ -11,7 +11,7 @@ The project consist of 6 sections in `app.py`:
 # Create a Payment Service API
  Endpoints:
   - Make payments: [POST endpoint](http://localhost:5000/transactions)
-  - Get all transactions: [GET endpoint](http://localhost:5000/)
+  - Get all transactions: [GET endpoint](http://localhost:5000/transactions)
   - Get payment balance: [GET endpoint](http://localhost:5000/transactions/balance)
 
 # Make payment Endpoint details
